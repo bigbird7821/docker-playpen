@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: application/.
+    image: didricg/nginx
+    #command: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - puppet 
+    volumes:
+      - .:/code
+      - ./www:/usr/local/nginx/html
+  puppet:
+    build: image/.
+    image: didricg/puppetbase
+    environment:
+      MYSQL_DATABASE: wordpress
