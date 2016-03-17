@@ -1,7 +1,10 @@
 version: '2'
 services:
-  web:
-    build: application/.
+  puppet:
+    build: base-puppet/.
+    image: didricg/puppetbase
+  nginx:
+    build: base-nginx/.
     image: didricg/nginx
     #command: nginx
     ports:
@@ -11,8 +14,10 @@ services:
     volumes:
       - .:/code
       - ./www:/usr/local/nginx/html
-  puppet:
-    build: image/.
-    image: didricg/puppetbase
-    environment:
-      MYSQL_DATABASE: wordpress
+  jenkins-master:
+    build: base-jenkins/.
+    image: didricg/jenkins-master
+    ports:
+      - "8080:8080"
+    depends_on:
+      - puppet 
