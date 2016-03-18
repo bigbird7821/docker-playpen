@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER James Turnbull "james@lovedthanlost.net"
+MAINTAINER Gavin Didrichsen "gavin.didrichsen@gmail.com"
 
 WORKDIR /tmp
 RUN apt-get -y update

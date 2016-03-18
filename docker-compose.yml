@@ -3,6 +3,15 @@ services:
   puppet:
     build: base-puppet/.
     image: didricg/puppetbase
+  rsqe:
+    build: base-rsqe/.
+    image: didricg/rsqe
+    command: tail -f /dev/null
+    depends_on:
+      - puppet 
+    volumes:
+      - ./ecosystem-puppet-docker/puppet/modules/applications:/test-puppet/example_env/modules
+      - ./ecosystem-puppet-docker/puppet/manifests:/test-puppet/manifests
   nginx:
     build: base-nginx/.
     image: didricg/nginx
