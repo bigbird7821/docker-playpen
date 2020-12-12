@@ -1,5 +1,5 @@
 FROM didricg/puppetbase
-MAINTAINER Gavin Didrichsen "gavin.didricshen@gmail.com"
+MAINTAINER Gavin Didrichsen "gavin.didrichsen@gmail.com"
 
 COPY ../puppet/modules/applications /etc/puppet/environments/example_env/modules
 COPY ../puppet/manifests /etc/puppet/environments/example_env/manifests
