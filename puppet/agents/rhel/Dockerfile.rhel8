@@ -1,0 +1,12 @@
+FROM registry.redhat.io/ubi8/ubi
+
+RUN yum update \
+    && yum install -y iputils \
+    && yum install -y ncurses \
+    && yum install -y openssl \
+    && yum install -y perl \
+    && yum install -y nc
+
+RUN update-crypto-policies --set FUTURE
+
+CMD ["/bin/tail", "-f", "/etc/hosts"]

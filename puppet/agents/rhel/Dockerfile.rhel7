@@ -1,0 +1,10 @@
+FROM registry.redhat.io/ubi7/ubi
+
+RUN yum update \
+    && yum install -y iputils \
+    && yum install -y ncurses \
+    && yum install -y openssl \
+    && yum install -y perl \
+    && yum install -y nc
+
+CMD ["/bin/tail", "-f", "/etc/hosts"]

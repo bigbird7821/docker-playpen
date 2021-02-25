@@ -1,0 +1,26 @@
+version: '3'
+
+# based off compose-sample-2, only we build nginx.conf into image
+# uses sample HTML static site from https://startbootstrap.com/themes/agency/
+
+services:
+  rhel8_agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.rhel8
+    extra_hosts:
+      - "pe-201984-m-8.platform9.puppet.net:10.234.3.124"
+      - "pe-201984-m-7.platform9.puppet.net:10.234.4.57"
+      - "pe-201819-m-7.platform9.puppet.net:10.234.4.10"
+    volumes:
+      - ".:/root/app"
+  rhel7_agent:
+    build:
+      context: .
+      dockerfile: Dockerfile.rhel7
+    extra_hosts:
+      - "pe-201984-m-8.platform9.puppet.net:10.234.3.124"
+      - "pe-201984-m-7.platform9.puppet.net:10.234.4.57"
+      - "pe-201819-m-7.platform9.puppet.net:10.234.4.10"
+    volumes:
+      - ".:/root/app"
