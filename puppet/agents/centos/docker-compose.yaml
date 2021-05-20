@@ -1,0 +1,29 @@
+version: '3'
+
+# based off compose-sample-2, only we build nginx.conf into image
+# uses sample HTML static site from https://startbootstrap.com/themes/agency/
+
+services:
+  centos7_agent:
+    # hostname: 'agent01_docker'
+    build:
+      context: .
+      dockerfile: Dockerfile.centos7
+    extra_hosts:
+      - "primary-2019.platform9.puppet.net:10.234.5.91"
+      - "replica-2019.platform9.puppet.net:10.234.5.125"
+      - "compiler01-2019.platform9.puppet.net:10.234.5.97"
+      - "compiler02-2019.platform9.puppet.net:10.234.5.78"
+      - "haproxy-2019.platform9.puppet.net:10.234.5.67"
+    volumes:
+      - ".:/src"
+  litmus_agent:
+    image: litmusimage/centos:7
+    extra_hosts:
+      - "primary-2019.platform9.puppet.net:10.234.5.91"
+      - "replica-2019.platform9.puppet.net:10.234.5.125"
+      - "compiler01-2019.platform9.puppet.net:10.234.5.97"
+      - "compiler02-2019.platform9.puppet.net:10.234.5.78"
+      - "haproxy-2019.platform9.puppet.net:10.234.5.67"
+    volumes:
+      - ".:/src"

@@ -1,0 +1,9 @@
+FROM registry.redhat.io/rhel8/rsyslog
+
+RUN curl -JLO 'https://pm.puppet.com/cgi-bin/download.cgi?dist=el&rel=8&arch=x86_64&ver=latest'
+
+RUN tar -xf puppet-enterprise-2019.8.4-el-8-x86_64.tar.gz
+
+WORKDIR /puppet-enterprise-2019.8.4-el-8-x86_64
+
+RUN /puppet-enterprise-installer
